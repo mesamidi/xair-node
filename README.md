@@ -22,7 +22,18 @@ cd bridge
 npm install
 ```
 
-### 2. Instalar dependencias de la UI
+### 2. Configurar el Bridge
+
+Crea un archivo `.env` en el directorio `bridge/` con la IP de tu mixer XR-18:
+
+```bash
+cd bridge
+echo "XR18_IP=192.168.0.100" > .env
+```
+
+**Importante:** Reemplaza `192.168.0.100` con la IP real de tu mixer XR-18/XAir. Puedes encontrar esta IP en la configuración de red del mixer o usando la aplicación oficial de Behringer.
+
+### 3. Instalar dependencias de la UI
 
 ```bash
 cd ui
@@ -102,7 +113,9 @@ El bridge por defecto escucha en:
 - **Puerto HTTPS**: `4001` (modo recomendado, `npm run start:https`)
 - **Puerto HTTP**: `4000` (modo alternativo, `npm start`)
 
-Para cambiar la IP del mixer XR-18, edita `bridge/index.js` o configura la variable de entorno correspondiente.
+La IP del mixer XR-18 se configura en el archivo `bridge/.env` mediante la variable `XR18_IP`. Si no has creado este archivo, el bridge no iniciará.
+
+Para cambiar la IP del mixer, edita `bridge/.env` y modifica el valor de `XR18_IP`.
 
 **Certificados SSL:** En modo HTTPS, los certificados se generan automáticamente y se guardan en `bridge/.cert/`. Se copian automáticamente desde `ui/.cert/` si se generan primero en la UI.
 
@@ -159,6 +172,7 @@ Para usar MIDI mapping desde una IP local:
 
 ## Notas Importantes
 
+- **Archivo `.env` requerido** - El bridge requiere un archivo `bridge/.env` con `XR18_IP` configurado. Sin este archivo, el bridge no iniciará
 - **HTTPS es necesario para MIDI mapping desde IP local** - Si planeas usar MIDI desde otro dispositivo o necesitas todas las funcionalidades, usa siempre el modo HTTPS
 - Los certificados SSL se generan automáticamente en `ui/.cert/` y se copian a `bridge/.cert/` cuando se inicia el bridge en modo HTTPS
 - Los datos se guardan en `localStorage` del navegador (parámetros, macros, mapeos MIDI, páginas)
