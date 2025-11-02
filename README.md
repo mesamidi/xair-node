@@ -1,5 +1,7 @@
 # OSC Control Interface
 
+**[English version](README-en.md)** | Versión en Español
+
 Interfaz web para controlar un mixer Behringer XR-18 mediante protocolo OSC (Open Sound Control). Incluye mapeo MIDI y organización por páginas.
 
 ## Estructura del Proyecto
